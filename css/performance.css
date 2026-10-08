@@ -1,0 +1,184 @@
+/* ============================================================
+   PERFORMANCE — بهینه‌سازی سرعت و GPU + Fix z-index cursor
+   ============================================================ */
+
+/* ===== 0. FIX: کرسر همیشه بالاترین لایه ===== */
+.cursor-dot,
+.cursor-ring {
+  z-index: 2147483647 !important;
+  mix-blend-mode: normal !important;
+}
+.cursor-trail {
+  z-index: 2147483646 !important;
+  mix-blend-mode: normal !important;
+  opacity: .6;
+}
+
+/* رنگ کرسر روی overlay های تیره */
+.cursor-ring {
+  border-color: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.cursor-dot {
+  background: #fff !important;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+.cursor-ring.hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: transparent !important;
+}
+
+/* ===== 1. کاهش هزینه‌ی Blur ===== */
+.blob {
+  filter: blur(70px) !important;
+  opacity: 0.35 !important;
+}
+.bg .blob {
+  animation-duration: 40s !important;
+}
+
+/* ===== 2. کاهش هزینه‌ی Backdrop-Filter ===== */
+.glass {
+  backdrop-filter: blur(12px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+}
+.card.glass {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(255, 255, 255, 0.05);
+}
+html.light .card.glass {
+  background: rgba(255, 255, 255, 0.7);
+}
+.nav {
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* ===== 3. Content-Visibility برای کارت‌ها ===== */
+.card,
+.blog-card,
+.game-card,
+.admin-post-item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+  contain: layout style paint;
+}
+
+/* ===== 4. سبک‌کردن glass::before ===== */
+.glass::before {
+  opacity: .4 !important;
+}
+
+/* ===== 5. انیمیشن‌های سریع‌تر ===== */
+.card, .blog-card, .game-card {
+  transition: transform .25s ease, box-shadow .25s ease !important;
+}
+
+/* ===== 6. موبایل: خاموش کردن افکت‌های سنگین ===== */
+@media (max-width: 768px), (hover: none) {
+  .blob {
+    filter: blur(50px) !important;
+    opacity: 0.25 !important;
+  }
+  .bg .blob {
+    animation: none !important;
+  }
+  .particles,
+  .cursor-trail,
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+  html.gaming body::before,
+  html.gaming body::after {
+    display: none !important;
+  }
+  .card, .game-card, .blog-card {
+    transform: none !important;
+  }
+}
+
+/* ===== 7. Prefers-reduced-motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .blob { animation: none !important; }
+  .particles { display: none !important; }
+}
+
+/* ===== 8. گرید بهینه ===== */
+.grid-3 {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* ===== 9. تصاویر ===== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   10. FIX: کرسر روی overlay ها کار کنه
+   ============================================================ */
+
+/* وقتی overlay بازه، cursor رو مخفی نکن */
+body:has(.modal.open) .cursor-dot,
+body:has(.modal.open) .cursor-ring,
+body:has(.ach-panel-overlay.show) .cursor-dot,
+body:has(.ach-panel-overlay.show) .cursor-ring,
+body:has(.ee-overlay.show) .cursor-dot,
+body:has(.ee-overlay.show) .cursor-ring {
+  display: block !important;
+  visibility: visible !important;
+}
+/* ============================================================
+   PERFORMANCE for visual-upgrades
+   ============================================================ */
+
+@media (max-width: 768px), (hover: none) {
+  /* Aurora سبک‌تر */
+  .aurora-bg::before,
+  .aurora-bg::after {
+    filter: blur(80px) !important;
+    animation-duration: 60s !important;
+  }
+
+  /* Mesh خاموش */
+  .mesh-bg {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Holo cards */
+  .holo-card::before {
+    background-size: 200% 200%;
+    transition: opacity .2s;
+  }
+
+  /* Layered cards سبک */
+  .layered-card::before,
+  .layered-card::after {
+    opacity: .5;
+  }
+
+  /* Burger خودش */
+  .mobile-burger {
+    display: block !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-bg::before,
+  .aurora-bg::after,
+  .mesh-bg,
+  .gradient-text {
+    animation: none !important;
+  }
+}

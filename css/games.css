@@ -1,0 +1,328 @@
+/* ============================================================
+   GAMES — بخش بازی‌ها (کامل و اصلاح‌شده)
+   ============================================================ */
+
+/* ===== Games Hero ===== */
+.games-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 26px;
+  margin-bottom: 26px;
+  background: linear-gradient(135deg, rgba(255,77,77,.08), rgba(34,211,238,.08));
+}
+
+.games-hero-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  background: #fff;
+  padding: 8px;
+  object-fit: contain;
+  box-shadow: 0 8px 24px rgba(255,140,66,.3);
+  animation: pulse 5s ease-in-out infinite;
+}
+
+.games-hero h3 { font-size: 20px; margin-bottom: 4px; }
+.games-hero p  { color: var(--dim); font-size: 14px; }
+
+@media (max-width: 500px) {
+  .games-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   Game Card
+   ============================================================ */
+
+.game-card {
+  position: relative;
+  display: block;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1),
+              box-shadow .3s;
+}
+.game-card:hover {
+  box-shadow: 0 20px 50px rgba(255,140,66,.25);
+}
+
+/* ===== Cover (نسبت ۱۶:۹ ثابت) ===== */
+.game-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #1a1a22;
+}
+
+/* موبایل: یه کم بلندتر برای دیده شدن بهتر */
+@media (max-width: 500px) {
+  .game-cover {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* حالت بدون عکس */
+.game-cover.no-img {
+  background: linear-gradient(135deg, #1a1a22, #2a1a3e);
+}
+.game-cover.no-img::after {
+  content: '🎮';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 56px;
+  opacity: .35;
+}
+
+/* گرادینت پایین برای خوانایی متن */
+.game-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.85));
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== Badge (FREE / قیمت) ===== */
+.game-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.2);
+  z-index: 2;
+}
+.game-badge.free {
+  background: linear-gradient(135deg, rgba(74,222,128,.9), rgba(34,211,238,.9));
+  color: #04241a;
+}
+.game-badge.paid {
+  background: linear-gradient(135deg, rgba(255,193,60,.95), rgba(255,140,66,.95));
+  color: #2a1400;
+}
+html[dir="rtl"] .game-badge {
+  right: auto;
+  left: 12px;
+}
+
+/* ===== Info Overlay ===== */
+.game-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 16px;
+  z-index: 2;
+}
+.game-info h3 {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.game-tags-mini {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.game-tags-mini span {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.15);
+  color: rgba(255,255,255,.9);
+  backdrop-filter: blur(8px);
+}
+
+/* ===== Body (توضیح + قیمت) ===== */
+.game-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.game-desc-mini {
+  font-size: 12px;
+  color: var(--dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  flex: 1;
+  max-height: 2.6em;
+}
+
+.game-price-tag {
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  background: linear-gradient(135deg, var(--c2), var(--c3));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.game-price-tag.free-text {
+  background: linear-gradient(135deg, var(--c4), var(--c5));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+/* ============================================================
+   GAMES ENTRY CARD (تو صفحه‌ی اصلی index.html)
+   ============================================================ */
+
+.games-entry {
+  display: block;
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(135deg,
+    rgba(255, 45, 149, 0.12),
+    rgba(176, 38, 255, 0.12),
+    rgba(0, 240, 255, 0.12)
+  );
+  border: 1px solid rgba(176, 38, 255, 0.25);
+  transition: transform .4s cubic-bezier(.2,.7,.2,1),
+              box-shadow .4s, border-color .4s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.games-entry::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #ff2d95, #b026ff, #00f0ff, #b026ff, #ff2d95);
+  background-size: 300% 300%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity .4s;
+  animation: gradientShift 4s ease infinite;
+}
+
+.games-entry:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow:
+    0 20px 60px rgba(176, 38, 255, 0.35),
+    0 0 40px rgba(0, 240, 255, 0.2);
+}
+.games-entry:hover::before { opacity: 1; }
+
+.games-entry-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.games-entry-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 22px;
+  background: #fff;
+  padding: 10px;
+  object-fit: contain;
+  box-shadow:
+    0 0 30px rgba(255, 45, 149, 0.5),
+    0 0 60px rgba(176, 38, 255, 0.3);
+  flex-shrink: 0;
+  transition: transform .4s;
+  animation: gamesLogoFloat 4s ease-in-out infinite;
+}
+.games-entry:hover .games-entry-logo {
+  transform: scale(1.1) rotate(-6deg);
+}
+
+.games-entry-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.games-entry-text h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #ff2d95, #b026ff, #00f0ff);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+}
+
+.games-entry-text p {
+  color: var(--dim);
+  font-size: 14px;
+}
+
+.games-entry-arrow {
+  font-size: 32px;
+  color: #00f0ff;
+  flex-shrink: 0;
+  transition: transform .4s;
+  text-shadow: 0 0 20px #00f0ff;
+}
+html[dir="rtl"] .games-entry-arrow {
+  transform: scaleX(-1);
+}
+.games-entry:hover .games-entry-arrow {
+  transform: translateX(8px);
+}
+html[dir="rtl"] .games-entry:hover .games-entry-arrow {
+  transform: scaleX(-1) translateX(8px);
+}
+
+@media (max-width: 600px) {
+  .games-entry-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .games-entry-arrow {
+    transform: rotate(90deg);
+  }
+  html[dir="rtl"] .games-entry-arrow {
+    transform: rotate(90deg) scaleX(-1);
+  }
+  .games-entry-text h3 { font-size: 20px; }
+}
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@keyframes gamesLogoFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}

@@ -1,0 +1,575 @@
+/* ============================================================
+   VISUAL UPGRADES — Aurora, Holographic, Mesh, Neumorphism,
+   Layered Cards, Mobile Menu, Scroll Animations, Gradient Text,
+   Ripple Effect
+   ============================================================ */
+
+/* ============================================================
+   1. AURORA BACKGROUND (شفق قطبی)
+   ============================================================ */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.7;
+  transition: opacity 1s;
+}
+html.light .aurora-bg { opacity: 0.25; }
+
+.aurora-bg::before,
+.aurora-bg::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%, rgba(120, 80, 255, 0.4), transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(0, 200, 255, 0.35), transparent 60%),
+    radial-gradient(ellipse 70% 40% at 50% 80%, rgba(255, 80, 180, 0.3), transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 90%, rgba(80, 255, 180, 0.25), transparent 60%);
+  filter: blur(60px);
+  animation: auroraFlow 30s ease-in-out infinite;
+}
+
+.aurora-bg::after {
+  background:
+    radial-gradient(ellipse 50% 40% at 70% 60%, rgba(255, 200, 80, 0.25), transparent 60%),
+    radial-gradient(ellipse 60% 30% at 30% 10%, rgba(180, 80, 255, 0.3), transparent 60%),
+    radial-gradient(ellipse 40% 50% at 90% 80%, rgba(80, 220, 255, 0.25), transparent 60%);
+  animation-delay: -15s;
+  animation-duration: 40s;
+  mix-blend-mode: screen;
+}
+
+@keyframes auroraFlow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25%      { transform: translate(5%, -3%) rotate(8deg) scale(1.05); }
+  50%      { transform: translate(-4%, 5%) rotate(-5deg) scale(0.98); }
+  75%      { transform: translate(3%, -4%) rotate(3deg) scale(1.03); }
+}
+
+/* ============================================================
+   2. GRADIENT MESH BACKGROUND
+   ============================================================ */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 25%, rgba(255, 77, 77, 0.15), transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(34, 211, 238, 0.15), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255, 201, 60, 0.12), transparent 45%),
+    radial-gradient(circle at 25% 75%, rgba(176, 38, 255, 0.1), transparent 40%),
+    radial-gradient(circle at 90% 65%, rgba(74, 222, 128, 0.1), transparent 40%);
+  animation: meshDrift 25s ease-in-out infinite;
+}
+
+@keyframes meshDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-2%, 2%) scale(1.05); }
+  66%      { transform: translate(2%, -2%) scale(0.98); }
+}
+
+/* ============================================================
+   3. HOLOGRAPHIC CARDS (کارت‌های هولوگرافیک)
+   ============================================================ */
+.holo-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.holo-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 45%,
+    rgba(255, 200, 100, 0.2) 50%,
+    rgba(255, 100, 200, 0.15) 55%,
+    rgba(100, 200, 255, 0.15) 60%,
+    transparent 75%,
+    transparent 100%
+  );
+  background-size: 300% 300%;
+  background-position: var(--holo-x, 50%) var(--holo-y, 50%);
+  opacity: 0;
+  transition: opacity .35s;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+.holo-card:hover::before,
+.holo-card.holo-active::before {
+  opacity: 1;
+}
+
+.holo-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--holo-angle, 0deg),
+    rgba(255, 77, 77, 0.4),
+    rgba(255, 201, 60, 0.4),
+    rgba(74, 222, 128, 0.4),
+    rgba(34, 211, 238, 0.4),
+    rgba(59, 130, 246, 0.4),
+    rgba(176, 38, 255, 0.4),
+    rgba(255, 77, 77, 0.4)
+  );
+  opacity: 0;
+  transition: opacity .35s;
+  z-index: -1;
+  filter: blur(8px);
+  pointer-events: none;
+}
+.holo-card:hover::after,
+.holo-card.holo-active::after {
+  opacity: .7;
+}
+
+/* ============================================================
+   4. NEUMORPHISM (نئومورفیسم)
+   ============================================================ */
+.neu-card {
+  background: var(--bg-2);
+  border-radius: 22px;
+  box-shadow:
+    8px 8px 20px rgba(0, 0, 0, 0.4),
+    -6px -6px 16px rgba(255, 255, 255, 0.03);
+  border: none;
+  transition: box-shadow .3s, transform .3s;
+}
+.neu-card:hover {
+  box-shadow:
+    4px 4px 12px rgba(0, 0, 0, 0.5),
+    -2px -2px 8px rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+html.light .neu-card {
+  background: #e8e8ee;
+  box-shadow:
+    8px 8px 20px rgba(0, 0, 0, 0.1),
+    -6px -6px 16px rgba(255, 255, 255, 0.9);
+}
+html.light .neu-card:hover {
+  box-shadow:
+    4px 4px 12px rgba(0, 0, 0, 0.12),
+    -2px -2px 8px rgba(255, 255, 255, 1);
+}
+
+.neu-btn {
+  background: var(--bg-2);
+  border-radius: 999px;
+  box-shadow:
+    4px 4px 10px rgba(0, 0, 0, 0.35),
+    -3px -3px 8px rgba(255, 255, 255, 0.03);
+  border: none;
+  color: var(--text);
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all .2s;
+}
+.neu-btn:active {
+  box-shadow:
+    inset 3px 3px 8px rgba(0, 0, 0, 0.4),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.04);
+  transform: translateY(1px);
+}
+
+/* ============================================================
+   5. LAYERED CARDS (کارت‌های لایه‌ای)
+   ============================================================ */
+.layered-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.layered-card::before,
+.layered-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transition: transform .4s cubic-bezier(.2,.7,.2,1);
+  z-index: -1;
+  border: 1px solid var(--glass-bd);
+}
+.layered-card::before {
+  background: linear-gradient(135deg, rgba(255, 77, 77, 0.15), rgba(255, 140, 66, 0.15));
+  transform: rotate(-2deg) translate(-6px, 6px);
+}
+.layered-card::after {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.15), rgba(59, 130, 246, 0.15));
+  transform: rotate(2deg) translate(6px, 6px);
+}
+
+.layered-card:hover::before {
+  transform: rotate(-5deg) translate(-10px, 10px);
+}
+.layered-card:hover::after {
+  transform: rotate(5deg) translate(10px, 10px);
+}
+
+/* ============================================================
+   6. SCROLL-DRIVEN ANIMATIONS
+   ============================================================ */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(.2,.7,.2,1),
+              transform 1s cubic-bezier(.2,.7,.2,1);
+}
+.scroll-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 1s cubic-bezier(.2,.7,.2,1),
+              transform 1s cubic-bezier(.2,.7,.2,1);
+}
+.scroll-scale.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scroll-slide-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 1s cubic-bezier(.2,.7,.2,1),
+              transform 1s cubic-bezier(.2,.7,.2,1);
+}
+.scroll-slide-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-slide-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 1s cubic-bezier(.2,.7,.2,1),
+              transform 1s cubic-bezier(.2,.7,.2,1);
+}
+.scroll-slide-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================
+   7. ANIMATED GRADIENT TEXT
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--c1) 0%,
+    var(--c2) 20%,
+    var(--c3) 40%,
+    var(--c4) 60%,
+    var(--c5) 80%,
+    var(--c1) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  animation: gradientFlow 8s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* Hero title gets it automatically */
+.hero-title {
+  animation: gradientFlow 10s linear infinite !important;
+  background-size: 300% 100% !important;
+}
+
+/* ============================================================
+   8. RIPPLE EFFECT
+   ============================================================ */
+.ripple-host {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%);
+  transform: scale(0);
+  animation: rippleAnim .7s cubic-bezier(.2,.7,.2,1) forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+html.light .ripple {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0) 70%);
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   9. MOBILE FULL-SCREEN MENU
+   ============================================================ */
+.mobile-burger {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-bd);
+  position: relative;
+  z-index: 200;
+}
+.mobile-burger span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all .35s cubic-bezier(.2,.7,.2,1);
+}
+.mobile-burger span:nth-child(1) { top: 14px; }
+.mobile-burger span:nth-child(2) { top: 20px; }
+.mobile-burger span:nth-child(3) { top: 26px; }
+
+.mobile-burger.active span:nth-child(1) {
+  top: 20px;
+  transform: rotate(45deg);
+}
+.mobile-burger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.mobile-burger.active span:nth-child(3) {
+  top: 20px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 940px) {
+  .mobile-burger { display: block; }
+}
+
+/* Full-screen overlay */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(7, 7, 11, 0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s, visibility .5s;
+}
+html.light .mobile-menu {
+  background: rgba(242, 242, 247, 0.95);
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 77, 77, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.15), transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(255, 201, 60, 0.1), transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.mobile-menu a {
+  position: relative;
+  display: block;
+  padding: 16px 32px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text);
+  text-transform: uppercase;
+  border-radius: 16px;
+  transition: all .3s cubic-bezier(.2,.7,.2,1);
+  transform: translateY(20px);
+  opacity: 0;
+  overflow: hidden;
+}
+
+.mobile-menu.open a {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu.open a:nth-child(1) { transition-delay: .1s; }
+.mobile-menu.open a:nth-child(2) { transition-delay: .18s; }
+.mobile-menu.open a:nth-child(3) { transition-delay: .26s; }
+.mobile-menu.open a:nth-child(4) { transition-delay: .34s; }
+.mobile-menu.open a:nth-child(5) { transition-delay: .42s; }
+.mobile-menu.open a:nth-child(6) { transition-delay: .50s; }
+.mobile-menu.open a:nth-child(7) { transition-delay: .58s; }
+.mobile-menu.open a:nth-child(8) { transition-delay: .66s; }
+
+.mobile-menu a:hover,
+.mobile-menu a:active {
+  background: linear-gradient(135deg, rgba(255, 77, 77, 0.15), rgba(34, 211, 238, 0.15));
+  transform: translateY(-2px) scale(1.03);
+}
+
+.mobile-menu a::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%) scaleX(0);
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(180deg, var(--c1), var(--c2));
+  border-radius: 2px;
+  transform-origin: top;
+  transition: transform .3s;
+}
+.mobile-menu a:hover::before { transform: translateY(-50%) scaleX(1); }
+
+/* Language switch inside mobile menu */
+.mobile-menu .mobile-lang {
+  display: flex;
+  gap: 6px;
+  margin-top: 24px;
+  padding: 5px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .5s .7s;
+}
+.mobile-menu.open .mobile-lang {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mobile-menu .mobile-lang button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dim);
+  transition: .2s;
+}
+.mobile-menu .mobile-lang button.active {
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: #fff;
+}
+
+/* ============================================================
+   10. MOBILE OPTIMIZATIONS
+   ============================================================ */
+@media (max-width: 768px) {
+  /* حذف افکت‌های سنگین روی موبایل */
+  .aurora-bg {
+    opacity: 0.4;
+  }
+  .aurora-bg::before,
+  .aurora-bg::after {
+    filter: blur(80px);
+  }
+
+  /* Holo cards سبک‌تر */
+  .holo-card::after {
+    display: none;
+  }
+
+  /* کارت‌های لایه‌ای سبک‌تر */
+  .layered-card::before,
+  .layered-card::after {
+    transform: rotate(-1deg) translate(-3px, 3px);
+  }
+  .layered-card:hover::before,
+  .layered-card:hover::after {
+    transform: rotate(-2deg) translate(-5px, 5px);
+  }
+  .layered-card:hover::after {
+    transform: rotate(2deg) translate(5px, 5px);
+  }
+}
+
+/* ============================================================
+   11. NAV — تغییر برای موبایل (نویگیشن باقی می‌مونه ولی burger)
+   ============================================================ */
+@media (max-width: 940px) {
+  .nav {
+    padding: 8px 14px;
+  }
+  .nav-links { display: none !important; }
+  .nav-right .lang-switch,
+  .nav-right .theme-toggle { display: none !important; }
+}
+
+/* ============================================================
+   12. Safe Area (iPhone notch)
+   ============================================================ */
+@supports (padding: env(safe-area-inset-top)) {
+  .nav {
+    top: calc(18px + env(safe-area-inset-top));
+  }
+  .mobile-menu {
+    padding-top: calc(40px + env(safe-area-inset-top));
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  }
+  .footer {
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ============================================================
+   13. Tap Highlight حذف
+   ============================================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================================
+   14. Reduce motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-bg::before,
+  .aurora-bg::after,
+  .mesh-bg,
+  .gradient-text,
+  .hero-title {
+    animation: none !important;
+  }
+  .holo-card::before,
+  .holo-card::after {
+    display: none !important;
+  }
+}
