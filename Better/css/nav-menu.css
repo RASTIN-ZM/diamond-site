@@ -1,0 +1,127 @@
+/* ============================================================
+   NAV MENU — همیشه burger، منوی شیشه‌ای برای همه
+   ============================================================ */
+
+/* ===== مخفی کردن منوی افقی قدیمی ===== */
+.nav-links {
+  display: none !important;
+}
+
+/* ===== Burger همیشه دیده شه (دسکتاپ + موبایل) ===== */
+.mobile-burger {
+  display: block !important;
+  order: 100; /* آخر همه */
+}
+
+/* ===== بهبود چیدمان نوار بالا ===== */
+.nav {
+  padding: 8px 14px;
+  gap: 12px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  overflow: visible;
+}
+
+/* ===== دکمه‌های نوار ===== */
+.theme-toggle,
+.admin-toggle,
+.sound-toggle,
+.ach-btn,
+.mobile-burger {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+/* ===== Lang switch توی نوار فقط دسکتاپ بزرگ ===== */
+@media (max-width: 1100px) {
+  .nav-right .lang-switch { display: none !important; }
+}
+
+/* ===== ساعت فقط دسکتاپ بزرگ ===== */
+@media (max-width: 1200px) {
+  .live-clock { display: none !important; }
+}
+
+/* ===== موبایل: فقط logo + user + theme + menu ===== */
+@media (max-width: 640px) {
+  .nav-right .sound-toggle,
+  .nav-right .ach-btn,
+  .nav-right .admin-toggle {
+    display: none !important;
+  }
+  .science-user-btn span:not(.science-user-avatar) {
+    display: none;
+  }
+  .science-user-btn {
+    padding: 5px !important;
+    width: 38px;
+    height: 38px;
+    justify-content: center;
+  }
+  .science-user-avatar {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ===== منوی شیشه‌ای به‌روز ===== */
+.mobile-menu {
+  z-index: 9990;
+}
+.mobile-menu.open {
+  display: flex !important;
+}
+
+/* ===== داخل منو: بخش‌ها با استایل بهتر ===== */
+.mobile-menu a {
+  font-size: 20px;
+  padding: 14px 30px;
+  border-radius: 14px;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+/* آیکون کوچیک قبل هر لینک */
+.mobile-menu a::after {
+  content: '→';
+  position: absolute;
+  right: 20px;
+  opacity: 0;
+  transition: all .3s;
+}
+html[dir="rtl"] .mobile-menu a::after {
+  right: auto;
+  left: 20px;
+  content: '←';
+}
+.mobile-menu a:hover::after {
+  opacity: .6;
+  right: 14px;
+}
+html[dir="rtl"] .mobile-menu a:hover::after {
+  right: auto;
+  left: 14px;
+}
+
+/* ===== منوی موبایل: ظاهر شیشه‌ای بهتر ===== */
+.mobile-menu {
+  background: rgba(5, 5, 15, 0.85);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+}
+html.light .mobile-menu {
+  background: rgba(245, 245, 250, 0.9);
+}
+
+/* ===== anim سبک ===== */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu a {
+    transition: none !important;
+  }
+}

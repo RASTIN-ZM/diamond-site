@@ -1,0 +1,11 @@
+/* ============================================================
+   RTL — Right-to-Left adjustments (فارسی / عربی)
+   ============================================================ */
+
+html[dir="rtl"] .nav-links        { flex-direction: row-reverse; }
+html[dir="rtl"] .lang-switch      { flex-direction: row-reverse; }
+html[dir="rtl"] .hero-cta         { flex-direction: row-reverse; }
+html[dir="rtl"] .nav-right        { flex-direction: row-reverse; }
+html[dir="rtl"] .modal-actions    { flex-direction: row-reverse; }
+html[dir="rtl"] .contact .btn     { align-self: flex-end; }
+html[dir="rtl"] .game-price-row   { grid-template-columns: 1fr auto; }
