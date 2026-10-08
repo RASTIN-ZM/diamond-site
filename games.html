@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="gaming">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>DIAMOND · Games</title>
+<meta name="description" content="DIAMOND Games — Explore, download and play." />
+
+<link rel="icon" type="image/png" href="assets/logo-gaming.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- ===== CSS ===== -->
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/layout.css" />
+<link rel="stylesheet" href="css/nav.css" />
+<link rel="stylesheet" href="css/effects.css" />
+<link rel="stylesheet" href="css/content.css" />
+<link rel="stylesheet" href="css/blog.css" />
+<link rel="stylesheet" href="css/games.css" />
+<link rel="stylesheet" href="css/modals.css" />
+<link rel="stylesheet" href="css/rtl.css" />
+<link rel="stylesheet" href="css/gaming.css" />
+<link rel="stylesheet" href="css/features.css" />
+<link rel="stylesheet" href="css/visual-upgrades.css" />
+<link rel="stylesheet" href="css/nav-menu.css" />
+<link rel="stylesheet" href="css/performance.css" />
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader">
+  <div class="preloader-logo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="plg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ff2d95"/>
+          <stop offset="40%" stop-color="#b026ff"/>
+          <stop offset="70%" stop-color="#00f0ff"/>
+          <stop offset="100%" stop-color="#39ff14"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 5 L92 38 L76 92 L24 92 L8 38 Z" fill="url(#plg)"/>
+    </svg>
+  </div>
+  <div class="preloader-text">GAMES</div>
+  <div class="preloader-bar"><span></span></div>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ BACKGROUND ============ -->
+<div class="bg">
+  <div class="blob-wrap" data-speed="0.15"><div class="blob b1"></div></div>
+  <div class="blob-wrap" data-speed="0.28"><div class="blob b2"></div></div>
+  <div class="blob-wrap" data-speed="0.22"><div class="blob b3"></div></div>
+  <div class="blob-wrap" data-speed="0.32"><div class="blob b4"></div></div>
+</div>
+<canvas id="particles" class="particles"></canvas>
+
+<!-- ============ CURSOR ============ -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+<canvas id="cursorTrail" class="cursor-trail"></canvas>
+
+<!-- ============ NAV (نسخه جدید - بدون nav-links) ============ -->
+<nav class="glass nav">
+  <a href="index.html" class="brand magnetic" data-transition="home">
+    <span class="brand-logo">
+      <img src="assets/logo-gaming.png" alt="DIAMOND" data-logo-gaming />
+    </span>
+    <span class="brand-name">DIAMOND</span>
+  </a>
+
+  <div class="nav-right">
+    <div class="live-clock" id="liveClock" title="Live time">
+      <span class="clock-date">—</span>
+      <span class="clock-time">--:--</span>
+    </div>
+    <div class="lang-switch">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="fa">FA</button>
+      <button data-lang="ar">AR</button>
+      <button data-lang="de">DE</button>
+    </div>
+    <button class="sound-toggle magnetic" id="soundToggle" title="Sound">🔇</button>
+    <button class="ach-btn magnetic" id="achievementsBtn" title="Achievements">🏆</button>
+    <button class="theme-toggle magnetic" id="themeToggle" aria-label="Theme">
+      <span class="sun">☀</span>
+      <span class="moon">☾</span>
+    </button>
+    <button class="admin-toggle magnetic" id="adminToggle" aria-label="Admin" title="Admin">⚙</button>
+  </div>
+</nav>
+
+<!-- ============ GAMES HERO ============ -->
+<section class="hero gaming-hero">
+  <div class="hero-logo glass holo-card scroll-scale">
+    <img src="assets/logo-gaming.png" alt="DIAMOND Gaming" data-logo-gaming />
+  </div>
+  <h1 class="hero-title scroll-reveal">GAMES</h1>
+  <p class="hero-sub scroll-reveal" data-i18n="games_hero_d">
+    Discover, download and play — free or premium.
+  </p>
+  <div class="hero-cta scroll-reveal">
+    <a href="#games-list" class="btn btn-primary magnetic" data-i18n="cta_explore">Explore</a>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- ============ GAMES LIST ============ -->
+<section id="games-list" class="section">
+  <h2 class="section-title glass scroll-slide-left" data-scramble data-i18n="games_title">Games</h2>
+
+  <div class="blog-toolbar scroll-reveal">
+    <input type="text" id="gameSearch" class="glass-input"
+           placeholder="🔎 Search games..." data-i18n-ph="search_game_ph" />
+    <div class="blog-tags" id="gameFilters"></div>
+  </div>
+
+  <div class="grid grid-3" id="gamesGrid"></div>
+  <p class="blog-empty" id="gamesEmpty" data-i18n="games_empty">No games yet. Coming soon!</p>
+
+  <div id="gamesPagination" class="pagination-container"></div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <p>© <span id="year"></span> DIAMOND · GAMING</p>
+  <button class="footer-admin" id="footerAdmin" data-i18n="admin_login">Admin Login</button>
+</footer>
+
+<!-- ============ LOGIN MODAL ============ -->
+<div class="modal" id="loginModal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box glass">
+    <button class="modal-close" data-close>×</button>
+    <h2 data-i18n="admin_login">Admin Login</h2>
+    <form id="loginForm" class="modal-form">
+      <input type="text"     id="loginUser" placeholder="Username" data-i18n-ph="username" autocomplete="username" required />
+      <input type="password" id="loginPass" placeholder="Password" data-i18n-ph="password" autocomplete="current-password" required />
+      <button type="submit" class="btn btn-primary" data-i18n="login_btn">Login</button>
+      <p class="login-error" id="loginError"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ ADMIN PANEL MODAL ============ -->
+<div class="modal" id="adminModal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box glass admin-panel">
+    <button class="modal-close" data-close>×</button>
+
+    <div class="admin-head">
+      <h2 data-i18n="admin_panel">Admin Panel</h2>
+      <button class="btn btn-ghost" id="logoutBtn" data-i18n="logout">Logout</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="games"    data-i18n="tab_games">🎮 Games</button>
+      <button class="admin-tab"        data-tab="security" data-i18n="tab_security">🔐 Security</button>
+    </div>
+
+    <!-- GAMES TAB -->
+    <div class="admin-tab-panel active" data-panel="games">
+      <form id="gameForm" class="modal-form">
+        <input type="hidden" id="gameId" />
+        <input type="text"   id="gameName"     placeholder="Game name" data-i18n-ph="game_name" required />
+        <input type="text"   id="gameCover"    placeholder="Cover image URL" data-i18n-ph="game_cover" required />
+        <input type="text"   id="gameDownload" placeholder="Download page URL" data-i18n-ph="game_download" required />
+
+        <div class="game-price-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="gameFree" />
+            <span data-i18n="game_free_label">Free game</span>
+          </label>
+          <input type="text" id="gamePrice" placeholder="Price (e.g. $9.99)" data-i18n-ph="game_price" />
+        </div>
+
+        <input type="text" id="gameTags" placeholder="Tags (comma separated: Action, RPG...)" data-i18n-ph="game_tags" />
+        <textarea          id="gameDesc" rows="4" placeholder="Short description..." data-i18n-ph="game_desc"></textarea>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary" data-i18n="publish">Publish</button>
+          <button type="button" class="btn btn-ghost" id="cancelGameEdit" style="display:none" data-i18n="cancel">Cancel</button>
+        </div>
+      </form>
+
+      <div class="admin-posts">
+        <h3 data-i18n="your_games">Your games</h3>
+        <div id="adminGamesList"></div>
+      </div>
+    </div>
+
+    <!-- SECURITY TAB -->
+    <div class="admin-tab-panel" data-panel="security">
+      <form id="passwordForm" class="modal-form">
+        <h3 style="margin-bottom:8px;" data-i18n="change_creds">Change credentials</h3>
+        <input type="text"     id="newUsername"     placeholder="New username" data-i18n-ph="new_username" />
+        <input type="password" id="currentPassword" placeholder="Current password" data-i18n-ph="current_password" required />
+        <input type="password" id="newPassword"     placeholder="New password (empty = keep)" data-i18n-ph="new_password" />
+        <input type="password" id="confirmPassword" placeholder="Confirm new password" data-i18n-ph="confirm_password" />
+        <p class="login-error" id="passError"></p>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary" data-i18n="save_changes">Save changes</button>
+        </div>
+      </form>
+
+      <div class="admin-posts" style="margin-top:24px;">
+        <h3 data-i18n="danger_zone">⚠ Danger zone</h3>
+        <button class="btn btn-ghost" id="resetAllBtn"
+                style="color:#ff6b6b;border-color:rgba(255,107,107,.3);"
+                data-i18n="reset_all">Reset all data</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ GAME VIEW MODAL ============ -->
+<div class="modal" id="gameModal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box glass game-view">
+    <button class="modal-close" data-close>×</button>
+    <img id="gvCover" class="pv-cover" alt="" />
+    <h2 id="gvTitle"></h2>
+    <div class="pv-meta" id="gvMeta"></div>
+    <div class="pv-content" id="gvDesc" style="margin-bottom:20px;"></div>
+    <a id="gvDownload" class="btn btn-primary magnetic" href="#" target="_blank" rel="noopener"
+       data-i18n="download_now">Download Now</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ============================================================
+     JS
+     ============================================================ -->
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/logo.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/modals.js"></script>
+<script src="js/games-data.js"></script>
+<script src="js/games.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/transition.js"></script>
+<script src="js/sounds.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/achievements.js"></script>
+<script src="js/easter-eggs.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/visual.js"></script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    var D = window.Diamond;
+    var modules = [
+      'logo', 'theme', 'i18n', 'modals', 'cursor',
+      'particles', 'effects', 'nav', 'games',
+      'auth', 'admin', 'transition',
+      'sounds', 'clock', 'achievements', 'easterEggs',
+      'parallax', 'visual'
+    ];
+    modules.forEach(function(k) {
+      if (D[k] && typeof D[k].init === 'function') {
+        D.utils.safe(function() { D[k].init(); }, k);
+      }
+    });
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+    console.log('%c🎮 DIAMOND GAMING ready', 'color:#00f0ff;font-weight:bold;font-size:14px');
+  });
+</script>
+
+</body>
+</html>

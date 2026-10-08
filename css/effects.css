@@ -1,0 +1,154 @@
+/* ============================================================
+   EFFECTS — Background, Cursor, Reveal, Sparkle, Keyframes
+   ============================================================ */
+
+/* ===== Background ===== */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, var(--bg-2) 0%, var(--bg) 60%);
+  transition: background .5s;
+}
+
+.blob-wrap {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.blob {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.45;
+  animation: float 22s ease-in-out infinite;
+}
+html.light .blob { opacity: 0.35; }
+
+.b1 { background: var(--c1); top: -12%; left: -8%; }
+.b2 { background: var(--c5); top: 20%; right: -15%; animation-delay: -5s; }
+.b3 { background: var(--c3); bottom: -15%; left: 25%; animation-delay: -10s; }
+.b4 { background: var(--c6); bottom: 5%; right: 15%; animation-delay: -15s; }
+
+/* ===== Particles Canvas ===== */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ===== Custom Cursor ===== */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(255,255,255,0.9);
+  transition: width .25s, height .25s, background .25s, border-color .25s;
+}
+.cursor-ring.hover {
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.15);
+  border-color: transparent;
+  backdrop-filter: blur(4px);
+}
+.cursor-ring.click { width: 20px; height: 20px; }
+
+/* ===== Cursor Trail ===== */
+.cursor-trail {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* موبایل: همه‌ی افکت‌های کرسر خاموش */
+@media (hover: none), (max-width: 768px) {
+  .cursor-dot,
+  .cursor-ring,
+  .cursor-trail { display: none; }
+}
+
+/* ===== Reveal on scroll ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s cubic-bezier(.2,.7,.2,1),
+              transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Sparkle ===== */
+.sparkle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+
+@keyframes float {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(6vw, -4vh) scale(1.1); }
+  66%      { transform: translate(-5vw, 5vh) scale(0.95); }
+}
+
+@keyframes preSpin {
+  0%, 100% { transform: rotate(0) scale(1); }
+  50%      { transform: rotate(180deg) scale(1.1); }
+}
+
+@keyframes shine {
+  to { background-position: -200% 0; }
+}
+
+@keyframes loadBar {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50%      { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes scrolldot {
+  0%   { transform: translateY(0);    opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,281 @@
+/* ============================================================
+   GAMING THEME — نئون، سایبرپانک، بهینه‌شده
+   ============================================================ */
+
+/* ===== رنگ‌های نئون ===== */
+html.gaming {
+  --bg: #05030a;
+  --bg-2: #0a0616;
+  --text: #f0f0ff;
+  --dim: #8a8aa8;
+  --glass-bg: rgba(176, 38, 255, 0.06);
+  --glass-bd: rgba(0, 240, 255, 0.15);
+  --glass-hi: rgba(0, 240, 255, 0.35);
+  --c1: #ff2d95;
+  --c2: #b026ff;
+  --c3: #00f0ff;
+  --c4: #39ff14;
+  --c5: #00f0ff;
+  --c6: #ff2d95;
+  --nav-bg: rgba(10, 6, 22, 0.7);
+}
+
+/* ===== گرید سایبرپانک پس‌زمینه (ساکن، سبک) ===== */
+html.gaming body::before {
+  content: '';
+  position: fixed;
+  inset: -10%;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: .35;
+}
+
+/* خطوط اسکن — حذف شد برای پرفورمنس */
+html.gaming body::after {
+  display: none;
+}
+
+/* ===== درخشش نئونی ===== */
+html.gaming .brand-logo {
+  box-shadow: 0 0 15px rgba(255, 45, 149, 0.6);
+}
+html.gaming .hero-logo {
+  box-shadow: 0 0 30px rgba(176, 38, 255, 0.5);
+}
+html.gaming .card:hover {
+  background: rgba(176, 38, 255, 0.08);
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+}
+
+/* ===== تیتر نئونی ===== */
+html.gaming .hero-title {
+  background: linear-gradient(135deg, #ff2d95 0%, #b026ff 50%, #00f0ff 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  filter: drop-shadow(0 0 15px rgba(176, 38, 255, 0.5));
+}
+
+/* ===== دکمه‌های نئونی ===== */
+html.gaming .btn-primary {
+  background: linear-gradient(135deg, #ff2d95, #b026ff);
+  box-shadow: 0 0 15px rgba(255, 45, 149, 0.4);
+}
+html.gaming .btn-primary:hover {
+  box-shadow: 0 0 25px rgba(255, 45, 149, 0.6);
+}
+
+/* ===== گلو نئون روی کارت بازی ===== */
+html.gaming .game-card:hover {
+  box-shadow: 0 10px 30px rgba(176, 38, 255, 0.3);
+}
+
+/* ============================================================
+   PAGE TRANSITION — ترنزیشن سینمایی
+   ============================================================ */
+
+.pt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.pt-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.pt-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, #0a0616 0%, #05030a 70%);
+  opacity: 0;
+  transition: opacity .5s;
+}
+.pt-overlay.active .pt-bg { opacity: 1; }
+
+/* گرید ساکن وسط صفحه (بدون انیمیشن) */
+.pt-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.12) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0;
+  transition: opacity .4s;
+  mask-image: radial-gradient(circle at center, #000 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at center, #000 0%, transparent 70%);
+}
+.pt-overlay.active .pt-grid { opacity: 1; }
+
+/* حلقه‌های نئونی */
+.pt-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 40px; height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  border: 2px solid;
+  opacity: 0;
+}
+.pt-ring-1 { border-color: #ff2d95; box-shadow: 0 0 25px #ff2d95; }
+.pt-ring-2 { border-color: #b026ff; box-shadow: 0 0 25px #b026ff; animation-delay: .15s; }
+.pt-ring-3 { border-color: #00f0ff; box-shadow: 0 0 25px #00f0ff; animation-delay: .3s; }
+
+.pt-overlay.active .pt-ring-1,
+.pt-overlay.active .pt-ring-2,
+.pt-overlay.active .pt-ring-3 {
+  animation: ptRingExpand 1.1s cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes ptRingExpand {
+  0% {
+    width: 40px; height: 40px;
+    margin: -20px 0 0 -20px;
+    opacity: 1;
+  }
+  100% {
+    width: 250vmax; height: 250vmax;
+    margin: -125vmax 0 0 -125vmax;
+    opacity: 0;
+  }
+}
+
+/* خط اسکن افقی */
+.pt-scanline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00f0ff, #b026ff, #ff2d95, transparent);
+  opacity: 0;
+  box-shadow: 0 0 15px #00f0ff;
+}
+.pt-overlay.active .pt-scanline {
+  opacity: 1;
+  animation: ptScan 1s linear infinite;
+}
+@keyframes ptScan {
+  0%   { top: -5%; }
+  100% { top: 105%; }
+}
+
+/* فلاش نهایی */
+.pt-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+.pt-overlay.active.leaving .pt-flash {
+  animation: ptFlash .4s ease-out .75s forwards;
+}
+.pt-overlay.entering-out .pt-flash {
+  animation: ptFlashReverse .5s ease-out forwards;
+}
+@keyframes ptFlash {
+  0%   { opacity: 0; }
+  40%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes ptFlashReverse {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* لوگو وسط */
+.pt-logo {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 80px; height: 80px;
+  margin: -40px 0 0 -40px;
+  opacity: 0;
+  transform: scale(.5);
+  transition: opacity .3s, transform .3s;
+  filter: drop-shadow(0 0 25px #b026ff);
+}
+.pt-overlay.active .pt-logo {
+  opacity: 1;
+  transform: scale(1);
+  animation: ptLogoPulse 1s ease-in-out infinite;
+}
+@keyframes ptLogoPulse {
+  0%, 100% { transform: scale(1) rotate(0); }
+  50%      { transform: scale(1.15) rotate(180deg); }
+}
+
+/* متن DIAMOND */
+.pt-text {
+  position: absolute;
+  top: calc(50% + 60px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 14px;
+  background: linear-gradient(90deg, #ff2d95, #b026ff, #00f0ff, #b026ff, #ff2d95);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  opacity: 0;
+  animation: ptTextShine 1.5s linear infinite;
+}
+.pt-overlay.active .pt-text {
+  opacity: 1;
+  transition: opacity .3s;
+}
+@keyframes ptTextShine {
+  to { background-position: -300% 0; }
+}
+
+/* انیمیشن خروج */
+.pt-overlay.entering-out .pt-bg   { opacity: 0; }
+.pt-overlay.entering-out .pt-grid { opacity: 0; }
+.pt-overlay.entering-out .pt-logo,
+.pt-overlay.entering-out .pt-text { opacity: 0; }
+
+/* ============================================================
+   Performance tweaks (اضافه‌شده به gaming.css)
+   ============================================================ */
+
+/* روی موبایل تم گیمینگ رو سبک‌تر کن */
+@media (max-width: 768px), (hover: none) {
+  html.gaming body::before {
+    display: none;
+  }
+  html.gaming .brand-logo,
+  html.gaming .hero-logo {
+    box-shadow: 0 0 10px rgba(176, 38, 255, 0.4);
+  }
+  html.gaming .hero-title {
+    filter: none;
+  }
+  html.gaming .btn-primary {
+    box-shadow: 0 4px 12px rgba(255, 45, 149, 0.3);
+  }
+  .pt-grid {
+    background-size: 60px 60px;
+    opacity: .5;
+  }
+  .pt-scanline {
+    display: none;
+  }
+}
+
+/* Prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html.gaming body::before { display: none; }
+  .pt-logo,
+  .pt-text,
+  .pt-scanline,
+  .pt-grid { animation: none !important; }
+}

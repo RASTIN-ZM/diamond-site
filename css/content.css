@@ -1,0 +1,160 @@
+/* ============================================================
+   CONTENT — Hero, Projects, Contact
+   ============================================================ */
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 60px;
+  gap: 22px;
+  position: relative;
+}
+
+.hero-logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 34px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  box-shadow: 0 20px 60px rgba(255,140,66,.25),
+              0 0 80px rgba(34,211,238,.15);
+  animation: pulse 5s ease-in-out infinite;
+  overflow: hidden;
+}
+.hero-logo img,
+.hero-logo svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.hero-title {
+  font-size: clamp(48px, 9vw, 110px);
+  font-weight: 700;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, var(--text) 20%, var(--c2) 50%, var(--c5) 80%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.hero-title .dud,
+.section-title .dud {
+  color: var(--c2);
+  opacity: .9;
+}
+
+.hero-sub {
+  color: var(--dim);
+  font-size: clamp(15px, 1.6vw, 19px);
+  max-width: 520px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* ===== Scroll Hint ===== */
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 40px;
+  border: 1.5px solid var(--glass-bd);
+  border-radius: 14px;
+  display: grid;
+  place-items: start center;
+  padding-top: 7px;
+}
+.scroll-hint span {
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--text);
+  animation: scrolldot 1.8s ease-in-out infinite;
+}
+
+/* ===== Projects ===== */
+.project {
+  display: block;
+  padding: 14px 14px 22px;
+}
+
+.project-thumb {
+  height: 150px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  position: relative;
+  overflow: hidden;
+}
+.project-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%);
+}
+
+.project h3,
+.project p { padding: 0 10px; }
+
+/* ===== Contact ===== */
+.contact {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 560px;
+}
+
+.contact input,
+.contact textarea {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-bd);
+  background: rgba(0,0,0,.25);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: .2s;
+  resize: vertical;
+}
+html.light .contact input,
+html.light .contact textarea {
+  background: rgba(255,255,255,.6);
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  border-color: rgba(255,140,66,.6);
+  background: rgba(0,0,0,.4);
+  box-shadow: 0 0 0 4px rgba(255,140,66,.12);
+}
+html.light .contact input:focus,
+html.light .contact textarea:focus {
+  background: rgba(255,255,255,.9);
+}
+
+.contact .btn { align-self: flex-start; }
+
+.sent {
+  opacity: 0;
+  color: var(--c4);
+  font-size: 13px;
+  transition: .3s;
+}

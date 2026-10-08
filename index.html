@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>DIAMOND</title>
+<meta name="description" content="DIAMOND — A personal space, crafted with light." />
+
+<link rel="icon" type="image/png" href="assets/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- ===== CSS ===== -->
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/layout.css" />
+<link rel="stylesheet" href="css/nav.css" />
+<link rel="stylesheet" href="css/effects.css" />
+<link rel="stylesheet" href="css/content.css" />
+<link rel="stylesheet" href="css/blog.css" />
+<link rel="stylesheet" href="css/games.css" />
+<link rel="stylesheet" href="css/modals.css" />
+<link rel="stylesheet" href="css/rtl.css" />
+<link rel="stylesheet" href="css/gaming.css" />
+<link rel="stylesheet" href="css/science.css" />
+<link rel="stylesheet" href="css/features.css" />
+<link rel="stylesheet" href="css/visual-upgrades.css" />
+<link rel="stylesheet" href="css/nav-menu.css" />
+<link rel="stylesheet" href="css/performance.css" />
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader">
+  <div class="preloader-logo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="plg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ff4d4d"/>
+          <stop offset="40%" stop-color="#ff8c42"/>
+          <stop offset="70%" stop-color="#ffc93c"/>
+          <stop offset="100%" stop-color="#22d3ee"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 5 L92 38 L76 92 L24 92 L8 38 Z" fill="url(#plg)"/>
+    </svg>
+  </div>
+  <div class="preloader-text">DIAMOND</div>
+  <div class="preloader-bar"><span></span></div>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="page-transition" id="pageTransition"></div>
+
+<!-- ============ BACKGROUND BLOBS ============ -->
+<div class="bg">
+  <div class="blob-wrap" data-speed="0.15"><div class="blob b1"></div></div>
+  <div class="blob-wrap" data-speed="0.28"><div class="blob b2"></div></div>
+  <div class="blob-wrap" data-speed="0.22"><div class="blob b3"></div></div>
+  <div class="blob-wrap" data-speed="0.32"><div class="blob b4"></div></div>
+</div>
+<canvas id="particles" class="particles"></canvas>
+
+<!-- ============ CURSOR ============ -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+<canvas id="cursorTrail" class="cursor-trail"></canvas>
+
+<!-- ============ NAV (نسخه جدید - بدون nav-links) ============ -->
+<nav class="glass nav">
+  <a href="#home" class="brand magnetic">
+    <span class="brand-logo">
+      <img src="assets/logo.png" alt="DIAMOND" data-logo />
+    </span>
+    <span class="brand-name">DIAMOND</span>
+  </a>
+
+  <div class="nav-right">
+    <div class="live-clock" id="liveClock" title="Live time">
+      <span class="clock-date">—</span>
+      <span class="clock-time">--:--</span>
+    </div>
+    <div class="lang-switch">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="fa">FA</button>
+      <button data-lang="ar">AR</button>
+      <button data-lang="de">DE</button>
+    </div>
+    <button class="sound-toggle magnetic" id="soundToggle" title="Sound">🔇</button>
+    <button class="ach-btn magnetic" id="achievementsBtn" title="Achievements">🏆</button>
+    <button class="theme-toggle magnetic" id="themeToggle" aria-label="Theme">
+      <span class="sun">☀</span>
+      <span class="moon">☾</span>
+    </button>
+    <button class="admin-toggle magnetic" id="adminToggle" aria-label="Admin" title="Admin">⚙</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="hero">
+  <div class="hero-logo glass holo-card scroll-scale">
+    <img src="assets/logo.png" alt="DIAMOND" data-logo />
+  </div>
+  <h1 class="hero-title scroll-reveal">DIAMOND</h1>
+  <p class="hero-sub scroll-reveal" data-i18n="hero_sub">A personal space, crafted with light.</p>
+  <div class="hero-cta scroll-reveal">
+    <a href="#projects" class="btn btn-primary magnetic" data-i18n="cta_explore">Explore</a>
+    <a href="#contact"  class="btn btn-ghost magnetic"  data-i18n="cta_contact">Get in touch</a>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="section">
+  <h2 class="section-title glass scroll-slide-left" data-scramble data-i18n="about_title">About</h2>
+  <div class="grid grid-3">
+    <div class="card glass tilt holo-card layered-card scroll-reveal">
+      <div class="card-icon">◆</div>
+      <h3 data-i18n="about_c1_t">Design</h3>
+      <p data-i18n="about_c1_d">Minimal, modern and crafted pixel by pixel.</p>
+    </div>
+    <div class="card glass tilt holo-card layered-card scroll-reveal">
+      <div class="card-icon">◇</div>
+      <h3 data-i18n="about_c2_t">Code</h3>
+      <p data-i18n="about_c2_d">Clean, fast and built with pure web tech.</p>
+    </div>
+    <div class="card glass tilt holo-card layered-card scroll-reveal">
+      <div class="card-icon">✦</div>
+      <h3 data-i18n="about_c3_t">Motion</h3>
+      <p data-i18n="about_c3_d">Every interaction feels alive and smooth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="section">
+  <h2 class="section-title glass scroll-slide-left" data-scramble data-i18n="proj_title">Projects</h2>
+  <div class="grid grid-3">
+    <a class="card glass project tilt holo-card scroll-reveal" href="#">
+      <div class="project-thumb" style="--g1:#ff4d4d;--g2:#ff8c42"></div>
+      <h3 data-i18n="proj_1">Project One</h3>
+      <p data-i18n="proj_1_d">Short description here.</p>
+    </a>
+    <a class="card glass project tilt holo-card scroll-reveal" href="#">
+      <div class="project-thumb" style="--g1:#4ade80;--g2:#22d3ee"></div>
+      <h3 data-i18n="proj_2">Project Two</h3>
+      <p data-i18n="proj_2_d">Short description here.</p>
+    </a>
+    <a class="card glass project tilt holo-card scroll-reveal" href="#">
+      <div class="project-thumb" style="--g1:#3b82f6;--g2:#8b5cf6"></div>
+      <h3 data-i18n="proj_3">Project Three</h3>
+      <p data-i18n="proj_3_d">Short description here.</p>
+    </a>
+  </div>
+</section>
+
+<!-- ============ GAMES CTA ============ -->
+<section id="games-cta" class="section">
+  <h2 class="section-title glass scroll-slide-left" data-scramble data-i18n="games_title">Games</h2>
+
+  <a href="games.html" data-transition="games" class="games-entry glass holo-card scroll-scale">
+    <div class="games-entry-inner">
+      <img src="assets/logo-gaming.png" alt="Gaming" class="games-entry-logo" data-logo-gaming />
+      <div class="games-entry-text">
+        <h3 class="gradient-text" data-i18n="games_hero_t">Enter the Game World</h3>
+        <p data-i18n="games_hero_d">Discover, download and play — free or premium.</p>
+      </div>
+      <div class="games-entry-arrow">→</div>
+    </div>
+  </a>
+</section>
+
+<!-- ============ SCIENCE CTA ============ -->
+<section id="science-cta" class="section">
+  <h2 class="section-title glass scroll-slide-left" data-scramble data-i18n="science_title">Science</h2>
+
+  <a href="science.html" data-transition="science" class="science-entry glass holo-card scroll-scale">
+    <div class="science-entry-inner">
+      <img src="assets/logo-science.png" alt="Science" class="science-entry-logo" data-logo-science />
+      <div class="science-entry-text">
+        <h3 class="gradient-text" data-i18n="science_hero_t">Enter the Science World</h3>
+        <p data-i18n="science_hero_d">Explore the world of knowledge — coming soon.</p>
+      </div>
+      <div class="science-entry-arrow">→</div>
+    </div>
+  </a>
+</section>
+
+<!-- ============ TOOLS ============ -->
+<section id="tools" class="section">
+  <h2 class="section-title glass scroll-slide-left" data-scramble data-i18n="tools_title">Tools</h2>
+
+  <div class="tools-grid">
+    <div class="tool-card neu-card scroll-reveal">
+      <h3><span class="tool-icon">🧮</span> Calculator</h3>
+      <div class="calc">
+        <div class="calc-display" id="calcDisplay">0</div>
+        <div class="calc-grid" id="calcGrid"></div>
+      </div>
+    </div>
+
+    <div class="tool-card neu-card scroll-reveal">
+      <h3><span class="tool-icon">🔐</span> Password Generator</h3>
+      <div class="pw-gen">
+        <div class="pw-input-row">
+          <input type="text" id="pwOutput" readonly placeholder="Click Generate..." />
+          <button class="btn btn-ghost" id="pwCopy" title="Copy">📋</button>
+        </div>
+        <div class="pw-slider-row">
+          <span>Length:</span>
+          <input type="range" id="pwLength" min="8" max="64" value="16" />
+          <span id="pwLengthVal">16</span>
+        </div>
+        <button class="btn btn-primary" id="pwGenBtn">Generate</button>
+      </div>
+    </div>
+
+    <div class="tool-card neu-card scroll-reveal">
+      <h3><span class="tool-icon">📱</span> QR Code Generator</h3>
+      <div class="qr-gen">
+        <div class="qr-input-row">
+          <input type="text" id="qrInput" placeholder="Enter text or URL..." />
+          <button class="btn btn-primary" id="qrBtn">Generate</button>
+        </div>
+        <div class="qr-result" id="qrResult">
+          <img id="qrImage" alt="QR Code" />
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card neu-card scroll-reveal">
+      <h3><span class="tool-icon">🎨</span> Color Picker</h3>
+      <div class="color-picker">
+        <div class="color-preview" id="colorPreview"></div>
+        <div class="color-input-row">
+          <input type="color" id="colorInput" value="#ff8c42" />
+          <div class="color-values">
+            <input type="text" id="colorHex" readonly />
+            <input type="text" id="colorRgb" readonly />
+            <input type="text" id="colorHsl" readonly />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section id="blog" class="section">
+  <h2 class="section-title glass scroll-slide-left" data-scramble data-i18n="blog_title">Blog</h2>
+
+  <div class="blog-toolbar scroll-reveal">
+    <input type="text" id="blogSearch" class="glass-input" placeholder="🔎 Search posts..." data-i18n-ph="search_ph" />
+    <div class="blog-tags" id="blogTags"></div>
+  </div>
+
+  <div class="grid grid-3" id="blogGrid"></div>
+  <p class="blog-empty" id="blogEmpty" data-i18n="blog_empty">No posts yet. Stay tuned!</p>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section">
+  <h2 class="section-title glass scroll-slide-left" data-scramble data-i18n="contact_title">Contact</h2>
+  <form class="contact glass scroll-reveal"
+        onsubmit="event.preventDefault(); this.querySelector('.sent').style.opacity=1; window.Diamond.utils.sparkleBurst(event);">
+    <input type="text"  data-i18n-ph="name"    placeholder="Your name"    required />
+    <input type="email" data-i18n-ph="email"   placeholder="Your email"   required />
+    <textarea rows="4"  data-i18n-ph="message" placeholder="Your message" required></textarea>
+    <button class="btn btn-primary magnetic" type="submit" data-i18n="send">Send</button>
+    <span class="sent" data-i18n="sent">Message sent ✓</span>
+  </form>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <p>© <span id="year"></span> DIAMOND</p>
+  <button class="footer-admin" id="footerAdmin" data-i18n="admin_login">Admin Login</button>
+</footer>
+
+<!-- ============ LOGIN MODAL ============ -->
+<div class="modal" id="loginModal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box glass">
+    <button class="modal-close" data-close>×</button>
+    <h2 data-i18n="admin_login">Admin Login</h2>
+    <form id="loginForm" class="modal-form">
+      <input type="text"     id="loginUser" placeholder="Username" data-i18n-ph="username" autocomplete="username" required />
+      <input type="password" id="loginPass" placeholder="Password" data-i18n-ph="password" autocomplete="current-password" required />
+      <button type="submit" class="btn btn-primary" data-i18n="login_btn">Login</button>
+      <p class="login-error" id="loginError"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ ADMIN PANEL MODAL ============ -->
+<div class="modal" id="adminModal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box glass admin-panel">
+    <button class="modal-close" data-close>×</button>
+
+    <div class="admin-head">
+      <h2 data-i18n="admin_panel">Admin Panel</h2>
+      <button class="btn btn-ghost" id="logoutBtn" data-i18n="logout">Logout</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="posts"    data-i18n="tab_posts">📝 Posts</button>
+      <button class="admin-tab"        data-tab="security" data-i18n="tab_security">🔐 Security</button>
+    </div>
+
+    <div class="admin-tab-panel active" data-panel="posts">
+      <form id="postForm" class="modal-form">
+        <input type="hidden" id="postId" />
+        <input type="text"   id="postTitle"   placeholder="Post title" data-i18n-ph="post_title" required />
+        <input type="text"   id="postCover"   placeholder="Cover image URL (optional)" data-i18n-ph="post_cover" />
+        <input type="text"   id="postTags"    placeholder="Tags (comma separated)" data-i18n-ph="post_tags" />
+        <textarea            id="postContent" rows="8" placeholder="Write your post..." data-i18n-ph="post_content" required></textarea>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary" data-i18n="publish">Publish</button>
+          <button type="button" class="btn btn-ghost" id="cancelEdit" style="display:none" data-i18n="cancel">Cancel</button>
+        </div>
+      </form>
+
+      <div class="admin-posts">
+        <h3 data-i18n="your_posts">Your posts</h3>
+        <div id="adminPostsList"></div>
+      </div>
+    </div>
+
+    <div class="admin-tab-panel" data-panel="security">
+      <form id="passwordForm" class="modal-form">
+        <h3 style="margin-bottom:8px;" data-i18n="change_creds">Change credentials</h3>
+        <input type="text"     id="newUsername"     placeholder="New username" data-i18n-ph="new_username" />
+        <input type="password" id="currentPassword" placeholder="Current password" data-i18n-ph="current_password" required />
+        <input type="password" id="newPassword"     placeholder="New password (empty = keep)" data-i18n-ph="new_password" />
+        <input type="password" id="confirmPassword" placeholder="Confirm new password" data-i18n-ph="confirm_password" />
+        <p class="login-error" id="passError"></p>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary" data-i18n="save_changes">Save changes</button>
+        </div>
+      </form>
+
+      <div class="admin-posts" style="margin-top:24px;">
+        <h3 data-i18n="danger_zone">⚠ Danger zone</h3>
+        <button class="btn btn-ghost" id="resetAllBtn"
+                style="color:#ff6b6b;border-color:rgba(255,107,107,.3);"
+                data-i18n="reset_all">Reset all data</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ POST VIEW MODAL ============ -->
+<div class="modal" id="postModal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box glass post-view">
+    <button class="modal-close" data-close>×</button>
+    <img id="pvCover" class="pv-cover" alt="" />
+    <h2 id="pvTitle"></h2>
+    <div class="pv-meta" id="pvMeta"></div>
+    <div class="pv-content" id="pvContent"></div>
+  </div>
+</div>
+
+<!-- ============ GAME VIEW MODAL ============ -->
+<div class="modal" id="gameModal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box glass game-view">
+    <button class="modal-close" data-close>×</button>
+    <img id="gvCover" class="pv-cover" alt="" />
+    <h2 id="gvTitle"></h2>
+    <div class="pv-meta" id="gvMeta"></div>
+    <div class="pv-content" id="gvDesc" style="margin-bottom:20px;"></div>
+    <a id="gvDownload" class="btn btn-primary magnetic" href="#" target="_blank" rel="noopener"
+       data-i18n="download_now">Download Now</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ============================================================
+     JS
+     ============================================================ -->
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/logo.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/modals.js"></script>
+<script src="js/blog.js"></script>
+<script src="js/games.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/transition.js"></script>
+<script src="js/sounds.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/achievements.js"></script>
+<script src="js/easter-eggs.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/visual.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

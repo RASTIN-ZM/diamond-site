@@ -1,0 +1,351 @@
+/* ============================================================
+   SCIENCE THEME — آبی نئون، شش‌ضلعی، فضای آزمایشگاهی
+   ============================================================ */
+
+html.science {
+  --bg: #04081a;
+  --bg-2: #0a1230;
+  --text: #e0f0ff;
+  --dim: #7a90b8;
+  --glass-bg: rgba(0, 212, 255, 0.05);
+  --glass-bd: rgba(0, 212, 255, 0.15);
+  --glass-hi: rgba(0, 212, 255, 0.35);
+  --c1: #00d4ff;
+  --c2: #06b6d4;
+  --c3: #8b5cf6;
+  --c4: #10b981;
+  --c5: #00d4ff;
+  --c6: #6366f1;
+  --nav-bg: rgba(4, 8, 26, 0.7);
+}
+
+/* ===== الگوی شش‌ضلعی پس‌زمینه ===== */
+html.science body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0 L60 17 L60 43 L30 60 L0 43 L0 17 Z' fill='none' stroke='rgba(0,212,255,0.07)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* ===== درخشش ملایم ===== */
+html.science body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.08), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.06), transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== لوگو و کارت‌ها ===== */
+html.science .brand-logo {
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+}
+html.science .hero-logo {
+  box-shadow:
+    0 0 30px rgba(0, 212, 255, 0.5),
+    0 0 60px rgba(6, 182, 212, 0.25);
+}
+html.science .card:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
+}
+
+/* ===== تیتر نئونی ===== */
+html.science .hero-title {
+  background: linear-gradient(135deg, #00d4ff 0%, #06b6d4 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.5));
+}
+
+/* ===== دکمه‌های آبی ===== */
+html.science .btn-primary {
+  background: linear-gradient(135deg, #00d4ff, #06b6d4 60%, #8b5cf6);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+html.science .btn-primary:hover {
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+}
+
+/* ============================================================
+   SCIENCE ENTRY CARD (تو index.html)
+   ============================================================ */
+
+.science-entry {
+  display: block;
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(135deg,
+    rgba(0, 212, 255, 0.10),
+    rgba(6, 182, 212, 0.10),
+    rgba(139, 92, 246, 0.10)
+  );
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  transition: transform .4s cubic-bezier(.2,.7,.2,1),
+              box-shadow .4s, border-color .4s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.science-entry::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #00d4ff, #06b6d4, #8b5cf6, #06b6d4, #00d4ff);
+  background-size: 300% 300%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity .4s;
+  animation: scienceGradientShift 4s ease infinite;
+}
+
+.science-entry:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow:
+    0 20px 60px rgba(0, 212, 255, 0.25),
+    0 0 40px rgba(139, 92, 246, 0.15);
+}
+.science-entry:hover::before { opacity: 1; }
+
+.science-entry-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.science-entry-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 22px;
+  background: #fff;
+  padding: 10px;
+  object-fit: contain;
+  box-shadow:
+    0 0 30px rgba(0, 212, 255, 0.5),
+    0 0 60px rgba(6, 182, 212, 0.3);
+  flex-shrink: 0;
+  transition: transform .4s;
+  animation: scienceLogoFloat 4s ease-in-out infinite;
+}
+.science-entry:hover .science-entry-logo {
+  transform: scale(1.1) rotate(6deg);
+}
+
+.science-entry-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.science-entry-text h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #00d4ff, #06b6d4, #8b5cf6);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+}
+
+.science-entry-text p {
+  color: var(--dim);
+  font-size: 14px;
+}
+
+.science-entry-arrow {
+  font-size: 32px;
+  color: #00d4ff;
+  flex-shrink: 0;
+  transition: transform .4s;
+  text-shadow: 0 0 20px #00d4ff;
+}
+html[dir="rtl"] .science-entry-arrow {
+  transform: scaleX(-1);
+}
+.science-entry:hover .science-entry-arrow {
+  transform: translateX(8px);
+}
+html[dir="rtl"] .science-entry:hover .science-entry-arrow {
+  transform: scaleX(-1) translateX(8px);
+}
+
+@media (max-width: 600px) {
+  .science-entry-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .science-entry-arrow {
+    transform: rotate(90deg);
+  }
+  html[dir="rtl"] .science-entry-arrow {
+    transform: rotate(90deg) scaleX(-1);
+  }
+  .science-entry-text h3 { font-size: 20px; }
+}
+
+/* ============================================================
+   Coming Soon (science.html)
+   ============================================================ */
+
+.coming-soon {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  gap: 22px;
+}
+
+.coming-soon h2 {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, #00d4ff 0%, #06b6d4 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+.coming-soon p {
+  color: var(--dim);
+  font-size: 16px;
+  max-width: 480px;
+}
+
+.coming-soon .orbital {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.coming-soon .orbital::before,
+.coming-soon .orbital::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+.coming-soon .orbital::before {
+  animation: orbitalSpin 8s linear infinite;
+}
+.coming-soon .orbital::after {
+  animation: orbitalSpin 12s linear infinite reverse;
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.coming-soon .nucleus {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 24px; height: 24px;
+  margin: -12px 0 0 -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00d4ff, #06b6d4);
+  box-shadow: 0 0 30px #00d4ff, 0 0 60px rgba(0, 212, 255, 0.5);
+  animation: nucleusPulse 2s ease-in-out infinite;
+}
+
+/* ===== Preloader science ===== */
+html.science .preloader-text {
+  background: linear-gradient(90deg, #fff 0%, #00d4ff 40%, #8b5cf6 60%, #fff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+html.science .preloader-bar span {
+  background: linear-gradient(90deg, #00d4ff, #06b6d4, #8b5cf6);
+}
+
+/* ============================================================
+   PAGE TRANSITION variant
+   ============================================================ */
+
+.pt-overlay.pt-science .pt-ring-1 {
+  border-color: #00d4ff;
+  box-shadow: 0 0 25px #00d4ff;
+}
+.pt-overlay.pt-science .pt-ring-2 {
+  border-color: #06b6d4;
+  box-shadow: 0 0 25px #06b6d4;
+}
+.pt-overlay.pt-science .pt-ring-3 {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 25px #8b5cf6;
+}
+.pt-overlay.pt-science .pt-scanline {
+  background: linear-gradient(90deg, transparent, #00d4ff, #8b5cf6, #06b6d4, transparent);
+  box-shadow: 0 0 15px #00d4ff;
+}
+.pt-overlay.pt-science .pt-text {
+  background: linear-gradient(90deg, #00d4ff, #06b6d4, #8b5cf6, #06b6d4, #00d4ff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+.pt-overlay.pt-science .pt-logo {
+  filter: drop-shadow(0 0 25px #00d4ff);
+}
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+
+@keyframes scienceGradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@keyframes scienceLogoFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes orbitalSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes nucleusPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 30px #00d4ff, 0 0 60px rgba(0, 212, 255, 0.5); }
+  50%      { transform: scale(1.15); box-shadow: 0 0 40px #00d4ff, 0 0 80px rgba(0, 212, 255, 0.7); }
+}
+
+/* ============================================================
+   Performance (موبایل)
+   ============================================================ */
+@media (max-width: 768px), (hover: none) {
+  html.science body::before { opacity: .4; }
+  html.science body::after  { display: none; }
+  html.science .hero-title  { filter: none; }
+  html.science .brand-logo,
+  html.science .hero-logo {
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.science body::before { display: none; }
+  .coming-soon .orbital::before,
+  .coming-soon .orbital::after,
+  .coming-soon .nucleus { animation: none !important; }
+}
